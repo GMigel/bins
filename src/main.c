@@ -6,6 +6,10 @@ void app_create(void);
 
 int main(int argc, char **argv)
 {
+    // platform/pc/main.c - at the top, after #includes
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+    lv_textarea_set_accepted_chars(textarea, NULL); // Accept all chars
+
     lv_init();
 
     /* --- SDL driver из LVGL examples --- */
