@@ -7,3 +7,4 @@ add_subdirectory(lib/lvgl)
 
 add_subdirectory(app)
 add_subdirectory(pc)
+add_subdirectory(stm32)
