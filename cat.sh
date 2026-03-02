@@ -22,3 +22,11 @@ echo src/fonts/dejavu_24_ru.c
 #cat src/fonts/dejavu_24_ru.c
 echo src/fonts/dejavu_28_ru.c
 #cat src/fonts/dejavu_28_ru.c
+echo stm32/CMakeLists.txt 
+cat stm32/CMakeLists.txt
+echo stm32/main_stm32.c
+cat stm32/main_stm32.c
+echo stm32/stm32_port.c
+cat stm32/stm32_port.c
+echo stm32/stm32_port.h
+cat stm32/stm32_port.h
