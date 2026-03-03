@@ -2,4 +2,10 @@ build/
 stm32/Debug/
 stm32/EWARM/bins/
 stm32/MDK-ARM/bins/
- 
+app/cmake_install.cmake
+build.ninja
+cmake_install.cmake
+pc/cmake_install.cmake
+stm32/EWARM/settings/Project_EditorBookmarks.xml
+stm32/cmake_install.cmake
+structure.txt

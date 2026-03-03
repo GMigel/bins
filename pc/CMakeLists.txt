@@ -1,10 +1,13 @@
 find_package(SDL2 REQUIRED)
 
 add_definitions(-DLV_CONF_INCLUDE_SIMPLE)
-#add_definitions(-DLV_CONF_PATH=\"${CMAKE_SOURCE_DIR}/lv_conf_pc.h\")
 
 add_executable(lvgl_pc
     main_pc.c
+)
+
+target_compile_definitions(lvgl_pc PRIVATE
+    LV_CONF_INCLUDE_SIMPLE
 )
 
 target_link_libraries(lvgl_pc

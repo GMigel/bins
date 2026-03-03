@@ -8,6 +8,8 @@ echo lv_conf_pc.h
 cat lv_conf_pc.h
 echo lv_conf_stm32.h
 cat lv_conf_stm32.h
+echo compile.sh
+cat compile.sh
 echo app/CMakeLists.txt
 cat app/CMakeLists.txt
 echo app/app.c
