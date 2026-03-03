@@ -2,12 +2,10 @@ echo cat.sh
 cat cat.sh
 echo CMakeLists.txt
 cat CMakeLists.txt
-echo lv_conf.h
-cat lv_conf.h
-echo lv_conf_pc.h
-cat lv_conf_pc.h
-echo lv_conf_stm32.h
-cat lv_conf_stm32.h
+echo config/lv_conf_pc.h
+cat config/lv_conf_pc.h
+echo config/lv_conf_stm32.h
+cat config/lv_conf_stm32.h
 echo compile.sh
 cat compile.sh
 echo app/CMakeLists.txt
@@ -32,3 +30,5 @@ echo stm32/stm32_port.c
 cat stm32/stm32_port.c
 echo stm32/stm32_port.h
 cat stm32/stm32_port.h
+echo stm32/Makefile
+cat stm32/Makefile

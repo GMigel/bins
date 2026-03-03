@@ -18,8 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "fatfs.h"
-#include "libjpeg.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -147,9 +145,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-    lv_init();
-    stm32_port_init();   // дисплей + тач
-    app_init();          // UI
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -161,37 +157,60 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_LTDC_Init();
-  MX_DMA2D_Init();
-  MX_CRC_Init();
-  MX_FDCAN1_Init();
-  MX_FDCAN2_Init();
-  MX_IWDG1_Init();
-  MX_RNG_Init();
-  MX_USART3_UART_Init();
-  MX_LIBJPEG_Init();
-  MX_RTC_Init();
-  MX_TIM6_Init();
-  MX_TIM7_Init();
-  MX_TIM13_Init();
-  MX_TIM14_Init();
-  MX_TIM16_Init();
-  MX_TIM17_Init();
-  MX_FATFS_Init();
-  MX_I2C2_Init();
-  MX_I2C3_Init();
-  MX_I2C4_Init();
-  MX_SPI1_Init();
-  MX_SPI2_Init();
-  MX_SPI3_Init();
-  MX_SPI4_Init();
-  MX_SPI5_Init();
-  MX_UART4_Init();
-  MX_UART5_Init();
-  MX_UART7_Init();
-  MX_UART8_Init();
-  MX_USART6_UART_Init();
+//  MX_LTDC_Init();
+//  MX_DMA2D_Init();
+//  MX_CRC_Init();
+//  MX_FDCAN1_Init();
+//  MX_FDCAN2_Init();
+//  MX_IWDG1_Init();
+//  MX_RNG_Init();
+//  MX_USART3_UART_Init();
+//  MX_RTC_Init();
+//  MX_TIM6_Init();
+//  MX_TIM7_Init();
+//  MX_TIM13_Init();
+//  MX_TIM14_Init();
+//  MX_TIM16_Init();
+//  MX_TIM17_Init();
+//  MX_I2C2_Init();
+//  MX_I2C3_Init();
+//  MX_I2C4_Init();
+//  MX_SPI1_Init();
+//  MX_SPI2_Init();
+//  MX_SPI3_Init();
+//  MX_SPI4_Init();
+//  MX_SPI5_Init();
+//  MX_UART4_Init();
+//  MX_UART5_Init();
+//  MX_UART7_Init();
+//  MX_UART8_Init();
+//  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
+  while (1) {
+	  int delay = 100000;
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  for (int i = 0; i<delay; i++)
+		  if (HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_SET)
+			  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+		  else
+			  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  }
+
+  while (1) {
+//	  int delay = 10000000;
+	  int delay = 10000000;
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+	  if (HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_SET)
+		  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+	  for (int i = 0; i<delay; i++);
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+	  for (int i = 0; i<delay; i++);
+//	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+//	  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+//	  HAL_Delay(500);
+  }
 
   /* USER CODE END 2 */
 
@@ -217,11 +236,7 @@ int main(void)
 	    HAL_Delay(500);
 
 	    /* Refresh Independent Watchdog */
-	    //	    HAL_IWDG_Refresh(&hiwdg1);
-	    if (HAL_IWDG_Refresh(&hiwdg1) != HAL_OK)
-	    {
-	        Error_Handler();
-	    }
+	    HAL_IWDG_Refresh(&hiwdg1);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -280,8 +295,8 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV1;
-  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
+  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
@@ -578,7 +593,7 @@ static void MX_I2C4_Init(void)
 
   /* USER CODE END I2C4_Init 1 */
   hi2c4.Instance = I2C4;
-  hi2c4.Init.Timing = 0x10707DBC;
+  hi2c4.Init.Timing = 0x00707CBB;
   hi2c4.Init.OwnAddress1 = 0;
   hi2c4.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c4.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
